@@ -1534,10 +1534,10 @@ The basic TLS Handshake for DH is shown in {{tls-full}}:
 ~~~
        Client                                               Server
   
-Key  ^ ClientHello                                                  
-Exch v  + KeyShare               -------->                           
-                                                       ServerHello  ^ Key
-                                                        + KeyShare  v Exch
+Key  / ClientHello                                                  
+Exch \  + KeyShare               -------->                           
+                                                       ServerHello  \ Key
+                                                        + KeyShare  / Exch
                                              {EncryptedExtensions}  ^ 
                                             {ServerConfiguration*}  | Server
                                              {CertificateRequest*}  v Params
@@ -1626,7 +1626,7 @@ CertificateVerify
 
 Finished
 : a MAC over the entire handshake. This message provides key confirmation, binds the endpoint's identity
-  to the exchanged keys, and in some modes (see {{zero-rtt-exchange}}) 
+  to the exchanged keys, and in some modes (0-RTT and PSK) 
   also authenticates the handshake using the the Static Secret. [{{finished}}]
 {:br }
 
