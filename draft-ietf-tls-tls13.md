@@ -3272,17 +3272,16 @@ Structure of this message:
 
 The verify_data value is computed as follows:
 
-
        verify_data =
-           HMAC(finished_key,
-                Handshake Context + Certificate* + CertificateVerify*)
+           HMAC(finished_key, Hash(
+                  Handshake Context + Certificate* + CertificateVerify*
+               ))
 
        * Only included if present.
 
-
 Where HMAC {{RFC2104}} uses the Hash algorithm for the handshake.
 As noted above: the HMAC input can generally be implemented by a running
-hash.
+hash, i.e., just the handshake hash at this point.
 
 In previous versions of TLS, the verify_data was always 12 octets long. In
 the current version of TLS, it is the size of the HMAC output for the
